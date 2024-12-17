@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "https://medifor7.netlify.app/",
+    origin: "https://medifor7.netlify.app",
     credentials: true,
   })
 );
