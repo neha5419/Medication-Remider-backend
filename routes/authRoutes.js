@@ -69,7 +69,10 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { httpOnly: true ,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+    });
     return res
       .status(200)
       .json({ message: "User logged in successfully", token });
@@ -112,6 +115,7 @@ router.patch("/forget-pass", async (req, res) => {
 
 // Middleware to Check Role Authorization
 function roleAssign(req, res, next) {
+  console.log("Cookies: ", req.cookies);
   const token = req.cookies.token;
 
   if (!token) {
@@ -120,6 +124,7 @@ function roleAssign(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded Token:", decoded);
     if (decoded.role !== "SUPER_ADMIN") {
       return res.status(403).json({ error: "Access denied" });
     }
