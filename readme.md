@@ -33,11 +33,6 @@ Before running the project locally, ensure you have the following installed:
 ◾cd medication-reminder-backend
 ◾npm install
 
-◼Set Environment Variable
-◾DATABASE_URL="postgresql://neondb_owner:KD1ybATil6xd@ep-jolly-bird-a56lgxst.us-east-2.aws.neon.tech/MediFor7?sslmode=require"
-◾JWT_SECRET="0123456789"
-◾PORT=3000
-
 ◼Run Prisma Migrations
 ◾npx prisma migrate dev --name init
 
